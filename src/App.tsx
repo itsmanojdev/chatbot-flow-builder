@@ -1,29 +1,15 @@
 import { useState, useCallback } from 'react'
-import { ReactFlow, Background, Controls, applyEdgeChanges, applyNodeChanges, type Node, type Edge, type OnNodesChange, type OnEdgesChange } from '@xyflow/react';
+import {
+  ReactFlow, Background, Controls, applyEdgeChanges, applyNodeChanges, addEdge,
+  type OnNodesChange, type OnEdgesChange, type OnConnect
+} from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import './App.css'
+import { IconContext } from "react-icons";
+import './App.css';
+import { initialNodes, initialEdges } from "./data";
+import Sidebar from './components/Sidebar';
+import Button from './components/Button';
 
-const initialNodes: Node[] = [
-  {
-    id: 'n1',
-    position: { x: 0, y: 0 },
-    data: { label: 'Node 1' },
-    type: 'input',
-  },
-  {
-    id: 'n2',
-    position: { x: 100, y: 100 },
-    data: { label: 'Node 2' },
-  },
-];
-
-const initialEdges: Edge[] = [
-  {
-    id: 'n1-n2',
-    source: 'n1',
-    target: 'n2',
-  },
-];
 
 function App() {
   const [nodes, setNodes] = useState(initialNodes);
@@ -43,31 +29,42 @@ function App() {
     [],
   );
 
+  const onConnect: OnConnect = useCallback(
+    (params) => setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
+    [],
+  );
+
   return (
-    <div className='flex flex-col h-full'>
-      <div className='h-13 w-full bg-gray-100'></div>
-      <div className='flex-1'>
-        <div className='flex h-full'>
-          <div className='w-4/5'>
+    <IconContext.Provider value={{ size: '24px' }}>
+      <div className='flex flex-col h-screen'>
+        <nav className='py-2 px-32 bg-gray-100'>
+          <div className='flex justify-end'>
+            <Button text='Save Changes' />
+          </div>
+        </nav>
+        <div className='flex flex-1 min-h-0'>
+          <div className='w-3/4'>
             <ReactFlow
               nodes={nodes}
               edges={edges}
               onNodesChange={onNodesChange}
               onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
               fitView
             >
               <Background />
               <Controls />
             </ReactFlow>
           </div>
-          <div className='w-1/5 border-l-2 border-gray-100'>
 
+          <div className="w-1/4 border-l-2 border-gray-100 flex flex-col">
+            <div className="flex-1 overflow-y-auto">
+              <Sidebar />
+            </div>
           </div>
-
         </div>
-
       </div>
-    </div>
+    </IconContext.Provider>
   )
 }
 
