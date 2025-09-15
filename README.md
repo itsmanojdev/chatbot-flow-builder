@@ -1,69 +1,76 @@
-# React + TypeScript + Vite
+# Chatbot Flow Builder  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **React-based chatbot flow builder** that allows you to visually design chatbot conversations by connecting nodes using [React Flow](https://reactflow.dev/).  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Hosted URL for Live Demo
 
-## Expanding the ESLint configuration
+🔗 **Live Demo:** [Chatbot Flow Builder](https://chatbot-flow-builder-ten-zeta.vercel.app/)  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### https://chatbot-flow-builder-ten-zeta.vercel.app/
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🚀 Features  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Drag & Drop Nodes**  
+  - Add text message nodes from the **Nodes Panel**.  
+- **Custom Nodes**  
+  - Currently supports **Text Message Nodes**.  
+  - Easily extensible to add more node types in the future.  
+- **Edges**  
+  - Connect nodes using edges to define chatbot flow.  
+  - **One outgoing edge** allowed per source handle.  
+  - **Multiple incoming edges** allowed per target handle.  
+- **Settings Panel**  
+  - Edit node properties such as message text.  
+  - Replaces the Nodes Panel when a node is selected.  
+- **Save Flow**  
+  - Validate and save your chatbot flow.  
+  - Displays an **error** if more than one node has empty target handles.  
+
+---
+
+## 🛠️ Tech Stack  
+
+- **React**  
+- **React Flow**  
+- **TypeScript**  
+- **Tailwind CSS**
+
+---
+
+## 📦 Installation & Setup  
+
+Clone the repo and install dependencies:  
+
+```bash
+# Clone the repo
+git clone https://github.com/itsmanojdev/chatbot-flow-builder.git
+
+# Navigate to project folder
+cd chatbot-flow-builder
+
+# Install dependencies
+npm install
+
+#Run the project locally:
+npm run dev
 ```
+The app will be available at http://localhost:5173/
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📋 Usage  
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Drag a **Message Node** from the right-side **Nodes Panel** onto the canvas.  
+2. Connect nodes using edges by dragging from **source handles** to **target handles**.  
+3. Click a node to open the **Settings Panel** and edit its text.  
+4. Press **Save Changes** to validate and save your flow.  
+
+---
+
+<p align="center">
+  🚀 Built with passion & ❤️ for clean code by <b>itsmanojdev</b>
+</p>
